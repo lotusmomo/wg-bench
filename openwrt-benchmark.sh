@@ -2,7 +2,7 @@
 
 #set -x
 
-NAME=$(grep NAME /etc/os-release | head -n 1 | awk -F '"' '{print $2}')
+ID_LIKE=$(grep ID_LIKE /etc/os-release | head -n 1 | awk -F '"' '{print $2}')
 
 NETNS="wg-bench"
 NIC="wg-bench"
@@ -13,7 +13,7 @@ NS_WG_IP="169.254.200.2"
 HOST_PORT="11001"
 NS_PORT="11002"
 
-if [ "$NAME" != "OpenWrt" ]; then
+if [ "$ID_LIKE" != "lede openwrt" ]; then
     echo "This is not OpenWrt. Exit"
     exit 1
 fi
@@ -75,24 +75,23 @@ setup() {
     ip netns exec ${NETNS} ip link set ${NIC}-ns up
 
     # Setup WG for host
-    wg genkey > host-privkey 2> /dev/null
-    wg genkey > ns-privkey 2> /dev/null
+    wg genkey >host-privkey 2>/dev/null
+    wg genkey >ns-privkey 2>/dev/null
     ip link add ${NIC}-wg type wireguard
     wg set ${NIC}-wg listen-port ${HOST_PORT} private-key host-privkey
     ip addr add ${HOST_WG_IP}/32 dev ${NIC}-wg peer ${NS_WG_IP}
-    wg set ${NIC}-wg peer $(wg pubkey < ns-privkey) allowed-ips ${NS_WG_IP}/32 endpoint ${NS_VETH_IP}:${NS_PORT}
+    wg set ${NIC}-wg peer $(wg pubkey <ns-privkey) allowed-ips ${NS_WG_IP}/32 endpoint ${NS_VETH_IP}:${NS_PORT}
     ip link set ${NIC}-wg up
 
     # Set up WG for netns
     ip netns exec ${NETNS} ip link add ${NIC}-wg type wireguard
     ip netns exec ${NETNS} wg set ${NIC}-wg listen-port ${NS_PORT} private-key $PWD/ns-privkey
     ip netns exec ${NETNS} ip addr add ${NS_WG_IP}/32 dev ${NIC}-wg peer ${HOST_WG_IP}
-    ip netns exec ${NETNS} wg set ${NIC}-wg peer $(wg pubkey < $PWD/host-privkey) allowed-ips ${HOST_WG_IP}/32 endpoint ${HOST_VETH_IP}:${HOST_PORT}
+    ip netns exec ${NETNS} wg set ${NIC}-wg peer $(wg pubkey <$PWD/host-privkey) allowed-ips ${HOST_WG_IP}/32 endpoint ${HOST_VETH_IP}:${HOST_PORT}
     ip netns exec ${NETNS} ip link set ${NIC}-wg up
     rm host-privkey
     rm ns-privkey
 }
-
 
 bench() {
     ip netns exec ${NETNS} iperf3 -s -D -p 4242
