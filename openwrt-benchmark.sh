@@ -2,7 +2,7 @@
 
 #set -x
 
-NAME=$(grep NAME /etc/os-release | head -n 1 | awk -F '"' '{print $2}')
+ID_LIKE=$(grep ID_LIKE /etc/os-release | head -n 1 | awk -F '"' '{print $2}')
 
 NETNS="wg-bench"
 NIC="wg-bench"
@@ -13,7 +13,7 @@ NS_WG_IP="169.254.200.2"
 HOST_PORT="11001"
 NS_PORT="11002"
 
-if [ "$NAME" != "OpenWrt" ]; then
+if [ "$ID_LIKE" != "lede openwrt" ]; then
     echo "This is not OpenWrt. Exit"
     exit 1
 fi
