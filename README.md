@@ -146,6 +146,7 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | HUAWEI SDIv3 / Kunpeng 920       | Debian trixie / 6.11.7 / -R      | 1.69 Gbits/sec | |
 | Loongson-3A6000-HV               | LoongArchLinux / 6.6.0-rc4       | 1.85 Gbits/sec | |
 | Phytium D2000x8 (2.3GHz)         | Debian bookworm / 6.1.66         | 2.05 Gbits/sec | |
+| Amazon EC2 t3.nano / Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz | ImmortalWrt 24.10.5 / 6.6.122    | 2.08 Gbits/sec | Region: ap-east-1, 2 Core CPU, 512MiB DDR4-2933, 2GiB GP3 Ext4 RootFS |
 | AMD EPYC 7742 (single socket)    | Debian bookworm / 6.1.27         | 2.10 Gbits/sec | |
 | Intel Celeron(R) J4125           | Linux pve / 6.2.16               | 2.12 Gbits/sec | |
 | Intel Xeon Silver 4210R          | Linux pve / 6.2.16               | 2.31 Gbits/sec | |
