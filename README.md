@@ -37,7 +37,8 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | Ubiquiti UniFi AC LR / QCA956X   | OpenWrt 24.10.0 / 6.6.73         | 35.6 Mbits/sec | |
 | Lemote Fuloong / Loongson 2F     | Gentoo / 6.1.74 CONFIG_PREEMPT   | 38.1 Mbits/sec | Highest of 10 runs |
 | Lemote Fuloong / Loongson 2F     | Gentoo / 6.1.74 PREEMPT_NONE     | 47.2 Mbits/sec | Highest of 10 runs |
-|Ubiquiti EdgeRouter Lite / Octeon CN5020 | OpenWrt 24.10.1 / 6.6.86  | 48.5 Mbits/sec | |
+|Ubiquiti EdgeRouter Lite / Octeon CN5020 | OpenWrt 24.10.1 / 6.6.86  | 48.5 Mbits/sec |Default settings (single-core) |
+|Ubiquiti EdgeRouter Lite / Octeon CN5020 | OpenWrt 24.10.4 / 6.6.110 | 70.9 Mbits/sec |Dual core with irqbalance |
 | GL-iNet MT1300 / MT7621A         | OpenWrt 23.05.2 / 5.15.137       | 82.5 Mbits/sec | |
 | D-Team Newifi D2 / MT7621AT      | OpenWrt 23.05.2 / 5.15.137       | 93 Mbits/sec   | |
 | Zyxel WSM20 / MT7621AT           | OpenWrt 23.05.2 / 5.15.137       | 98.3 Mbits/sec | |
@@ -55,11 +56,13 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | P&W R619AC 128M / IPQ4019     | OpenWrt 23.05.4 / 5.15.164       | 201 Mbits/sec  | Overclocked 896 MHz |
 | Xiaomi Mi Router R3D / IPQ8064   | OpenWrt Snapshot / 6.1.77       | 214 Mbits/sec  | |
 | NanoPi R2S / RK3328              | OpenWrt 23.05.2 / 5.15.137       | 234 Mbits/sec  | |
+| Linksys WRT1900AC v1 / Marvell Armada XP MV78230 | OpenWrt SNAPSHOT / 6.12.68       | 244 Mbits/sec  |  |
 | Rock Cubie A5E / A527            | Armbian 25.5.0 / 6.14.0          | 245 Mbits/sec  | |
 | TP-Link Archer C2600 v1.x / IPQ8064 | OpenWrt 23.05.4 / 5.15.162    | 250 Mbits/sec  | |
 | Intel Atom E3825                 | OpenWrt 23.05.2 / 5.15.137       | 259 Mbits/sec  | |
 | UFI001C (UFI003) / MSM8916       | OpenStick / [5.15.0](https://github.com/OpenStick/linux) | 260 Mbits/sec | |
 | Cisco/Viptela vEdge 1000 / Cavium CN6130  | OpenWrt 24.10.1 / 6.6.86   | 260 Mbits/sec  | |
+| Bananapi BPI-RV2 (Booting from NAND) / Siflower SF21H8898 | OpenWrt SNAPSHOT / 6.6.114       | 261 Mbits/sec  |  |
 | Ubiquiti EdgeRouter 4 / Cavium CN7130  | OpenWrt 24.10.0 / 6.6.73   | 271 Mbits/sec  | |
 | Netgear R7800 / IPQ8065          | OpenWrt 23.05.2 / 5.15.137       | 291 Mbits/sec  | |
 | Banana Pi BPI-M2 ZERO / Allwinner H2+ | Armbian 25.5.0 / 6.12.23    | 295 Mbits/sec  | |
@@ -77,6 +80,7 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | 360 T7 / MT7981                  | OpenWRT 23.05.0 / 5.15.134       | 369 Mbits/sec  | |
 | GL-iNet MT3000 / MT7981          | GL 5.4.211 / 5.10.0              | 369 Mbits/sec  | |
 | Xiaomi AX3000T / MT7981          | OpenWrt Snapshot / 6.1.82        | 371 Mbits/sec  | |
+| Linksys MX5300                   | OpenWrt 24.10.5                  | 758 Mbits/sec  | |
 | OpenWrt One / MT7981             | OpenWrt Snapshot / 6.6.43        | 375 Mbits/sec  | |
 | Cudy TR3000 v1 / MT7981BA        | OpenWrt 24.10.0 / 6.6.73         | 377 Mbits/sec  | |
 | Routerich AX3000 / MT7981        | OpenWRT 23.05.2 / 5.15.137       | 381 Mbits/sec  | |
@@ -86,22 +90,28 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | GL.iNet GL-AXT1800 / IPQ6000     | OpenWRT SNAPSHOT / 6.6.84        | 414 Mbits/sec  | arm64 system by VIKINGYFY/immortalwrt, bypass os-release NAME check |
 | Lemote A1801 / Loongson 3A3000-LP | Debian bookworm / 5.10.209      | 423 Mbits/sec  | CPU reversion variant H2, clocked at 1.45GHz |
 | Linksys WRT3200ACM / 88F6820     | OpenWRT 23.05.2 / 5.15.137       | 426 Mbits/sec  | |
+| Radxa NIO12L / MT8395            | Ubuntu 22.04 / 5.15.0            | 436 Mbits/sec  | Only enable A55 cores |
 | Phytium Pi (V2.2) / E2000Q FT664 (1.8GHz) | deepin V23 Beta3 / 5.10.209 | 437 Mbits/sec  | With FT310 "little" cores disabled |
 | Milk-V Pioneer / SG2042          | RevyOS / 6.1.61                  | 440 Mbits/sec  | |
 | Raspberry Pi Zero 2W / BCM2710A1 | OpenWRT 23.05.2 / 5.15.137       | 443 Mbits/sec  | |
 | Linksys MX4300 / IPQ8174         | OpenWRT 24.10.0-rc2 / 6.6.63     | 443 Mbits/sec  | |
 | Sipeed Lichee Pi 4A / TH1520     | RevyOS / 6.6.4                   | 451 Mbits/sec  | |
+| JDCloud RE-CS-02 / IPQ6018       | ImmortalWRT SNAPSHOT / 6.12.62   | 481 Mbits/sec  | arm64 system by VIKINGYFY/immortalwrt, bypass os-release NAME check |
+| Nokia Bell XG-040G-MD / AN7581   | OpenWrt 25.12.0 / 6.12.71 | 494 Mbits/sec  | Build from patches proposed in openwrt #21896, not yet official |
 | Raspberry Pi Model 3B / BCM2837  | OpenWRT 23.05.2 / 5.15.137       | 522 Mbits/sec  | |
 | Phicomm N1 / S905D               | ophub-openwrt / 6.1.66           | 537 Mbits/sec  | |
 | FriendlyELECT NanoPi R5C / RK3568B2 | OpenWRT / 24.10.1             | 537 Mbits/sec  | |
 | FriendlyELEC NanoPi R3S / RK3566 | OpenWRT 24.10.1 / 6.6.86         | 544 Mbits/sec  | Default OpenWRT firewall settings |
 | Intel Celeron(R) J1800           | Ubuntu 22.04.3 / 5.15.0          | 551 Mbits/sec  | |
 | Routerich AX3000 / MT7981        | OpenWRT 24.10.2 / 6.6.93         | 559 Mbits/sec  | OC to 2.24GHz |
+| Radxa NIO12L / MT8395            | Ubuntu 22.04 / 5.15.0            | 566 Mbits/sec  | Default use all cores |
 | Dell Wyse 3040 / Intel Atom x5-Z8350 | OpenWRT 23.05.5 / 5.15.167   | 581 Mbits/sec  | All cores run on "performance" cpufreq governor |
 | Redmi AX6 / IPQ8071A             | OpenWRT Snapshot / 6.1.77        | 603 Mbits/sec  | |
 | Radxa E20C / RK3528              | iStoreOS / 5.10.201              | 620 Mbits/sec  | |
+| OrangePi Zero3 / Allwinner H618  | Armbian v26.2 rolling / 6.12.74-current-sunxi64 | 660 Mbits/sec | |
 | Raspberry Pi 4 / BCM2711*        | archlinux / 6.1.61(armv7l)       | 665 Mbits/sec  | |
 | FriendlyELEC NanoPi R3S / RK3566 | OpenWRT 24.10.1 / 6.6.86         | 695 Mbits/sec  | Firewall disabled |
+| Radxa A7Z / Allwinner A733       | Debian 11 / 5.15.147-11-a733     | 698 Mbits/sec  | |
 | NanoPi R6C / RK3588S             | OpenWrt 24.10.0-rc5 / 6.6.69     | 728 Mbits/sec  | |
 | Banana Pi BPI-R3 Mini / MT7986A  | OpenWRT 24.10.0-rc5 / 6.6.69     | 730 Mbits/sec  | |
 | Mercusys MR90X v1 / MT7986       | OpenWRT 23.05.2 / 5.15.137       | 754 Mbits/sec  | |
@@ -116,6 +126,7 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | Raspberry Pi 4 / BCM2711*        | OpenWRT 23.05.2 / 5.15.137       | 881 Mbits/sec  | CPU at 1.5GHz |
 | Asus TUF-AX4200 / MT7986AV       | OpenWRT Snapshot / 6.1.78        | 936 Mbits/sec  | |
 | JDCloud RE-CP-03 / MT7986A*      | OpenWRT Snapshot / 6.1.82        | 946 Mbits/sec  | with firewall disabled |
+| Zhaoxin C4600                    | eweOS / 6.18.12                  | 994 Mbits/sec  | CPU stepping 14, dual channel DDR3 at 1333MHz |
 | XpressReal T3 / RTD1619B         | Armbian Armbian-unofficial 25.11 | 1.00 Gbits/sec | PREEMPT_NONE |
 | Raspberry Pi 4 / BCM2711*        | OpenWRT 23.05.2 / 5.15.137       | 1.02 Gbits/sec | CPU at 2.0GHz |
 | FriendlyELEC NanoPC-T6 / Rockchip RK3588 (A53) | Debian trixie / 6.12.12-1 | 1.03 Gbits/sec | with A76 cores disabled |
@@ -128,6 +139,9 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | iEi Puzzle-M902 / Marvell CN9130 | OpenWRT 23.05.03 / 5.15.150      | 1.43 Gbits/sec | |
 | Phytium D2000x8 (2.3GHz)         | Debian trixie / 6.11.7           | 1.49 Gbits/sec | |
 | Intel Celeron N4500              | Linux pve / 6.2.16-3-pve         | 1.54 Gbits/sec | |
+| OneThingCloud OES / Amlogic A311D | Armbian Trixie / 6.18.16-ophub   | 1.55 Gbits/sec | |
+| Intel i5-7300U                   | ArchLinux / 6.17.1-2-cachyos     | 1.59 Gbits/sec | |
+| Radxa NIO12L / MT8395            | Ubuntu 22.04 / 5.15.0            | 1.60 Gbits/sec  | Only enable A78 cores |
 | Mac Mini (2020) / Apple M1*      | AsahiLinux / 6.5.0               | 1.60 Gbits/sec | |
 | HUAWEI SDIv3 / Kunpeng 920       | Debian trixie / 6.11.7 / -R      | 1.69 Gbits/sec | |
 | Loongson-3A6000-HV               | LoongArchLinux / 6.6.0-rc4       | 1.85 Gbits/sec | |
@@ -151,6 +165,7 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | FriendlyELEC NanoPC-T6 / Rockchip RK3588 (A76) | Debian trixie / 6.12.12-1 | 3.06 Gbits/sec | with A55 cores disabled |
 | Raspberry Pi 5 / BCM2712*        | Raspberry Pi OS / 6.1.68         | 3.08 Gbits/sec | Reconfigure Kernel [#5](https://github.com/cyyself/wg-bench/issues/5) |
 | Pixel 7a / Google Tensor G2      | Debian trixie / 6.1.2            | 3.14 Gbits/sec | 2 core pKVM |
+| Intel Xeon Platinum 8259CL       | Debian bookworm / 6.1.94         | 3.26 Gbits/sec | 4 core Hyper-V VM |
 | AMD Ryzen 9 5950X*               | Arch Linux / 6.7.6-arch1-1       | 3.28 Gbits/sec | [test 1 firewalld: running ; irqbalance: running](https://github.com/teelfox/wg-bench/blob/081895035183bdd03ee063f08efa307ecf7c0762/teelfox_ryzen_9_5950X.md) |
 | Intel Atlas Canyon / Intel Celeron N5105* | Alpine Linux / 6.6.28            | 3.44 Gbits/sec | |
 | Radxa Orion O6 / Cix P1*         | Debian sid / 6.12.9              | 3.48 Gbits/sec | With A520 little cores disabled |
@@ -164,9 +179,11 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | Intel Core i5-4590               | Debian bookworm / 6.1.38         | 4.21 Gbits/sec | |
 | Intel Core i7-8850H              | Debian Trixie / Linux 6.12.35    | 4.29 Gbits/sec | firewalld stopped |
 | AMD Ryzen 9 5950X*               | Arch Linux / 6.7.6-arch1-1       | 4.30 Gbits/sec | [test 3 firewalld: stopped ; irqbalance: running](https://github.com/teelfox/wg-bench/blob/081895035183bdd03ee063f08efa307ecf7c0762/teelfox_ryzen_9_5950X.md) ; needs retesting [#1](https://github.com/teelfox/wg-bench/issues/1) |
+| Intel Core i5-12500              | ArchLinux / 6.17.1-2-cachyos     | 4.31 Gbits/sec | powerprofilectl on performance, E cores not disabled |
 | Intel Core i5-8500               | Ubuntu 22.04.3 / 5.15.0          | 4.49 Gbits/sec | |
 | LENOVO 90CYCTO1WW / Intel Core i5-4590 | ImmortalWrt 24.10.3 / 6.6.104    | 4.57 Gbits/sec | CPU at 3.49GHz |
 | Intel N100                       | Debian bookworm / 6.6.13         | 4.65 Gbits/sec | CPU at 12W TDP |
+| Intel N150                       | Ubuntu 25.10 / 6.17.0            | 4.65 Gbits/sec | |
 | Intel Core i7-8565U              | Debian trixie / 6.7.6 xanmod     | 4.93 Gbits/sec | Xanmod Kernel |
 | AMD Ryzen 5 PRO 5650GE           | Linux pve / 6.2.16               | 5.29 Gbits/sec | |
 | Surface Pro 11 with 5G / Snapdragon X Elite X1E-80-100 | Arch Linux ARM / 6.13.0 | 5.57 Gbits/sec | disabled 4 cores, other 8 cores running at 3.42GHz |
